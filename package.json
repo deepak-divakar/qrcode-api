@@ -1,0 +1,15 @@
+{
+  "name": "qrcode-api",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "express": "^4.18.2",
+    "patch-package": "^8.0.0",
+    "simple-qrbtf": "^1.3.0",
+    "svg2img": "^1.0.0-beta.2"
+  },
+  "scripts": {
+    "start": "node ./src/server",
+    "postinstall": "patch-package"
+  }
+}
