@@ -4,7 +4,19 @@ const app = express();
 const svg2img = require('svg2img');
 app.use(express.json());
 
-app.post('/api/generate', (req, res) => {
+const access_token = process.env.apiKey || apiKey;
+
+function verifyApiKey(req, res, next) {
+  const { key } = req.headers;
+
+  if (!key || key !== access_token) {
+    return res.status(401).json({ error: 'Unauthorized: Invalid API key' });
+  }
+
+  next();
+}
+
+app.post('/api/generate', verifyApiKey, (req, res) => {
   try {
     const { qrid } = req.body;
     const options = {
@@ -39,6 +51,10 @@ app.post('/api/generate', (req, res) => {
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
+});
+
+app.all('*', (req, res) => {
+  res.status(404).json({ error: 'Route not found' });
 });
 
 const PORT = process.env.PORT || 5000;
