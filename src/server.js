@@ -21,12 +21,12 @@ app.post('/api/generate', verifyApiKey, (req, res) => {
     const { qrid } = req.body;
     const options = {
         content: 'https://superrpets.com/qr?qrid=' + qrid,
-        icon: { enabled: 5, scale: 18 },
+        icon: { enabled: 5, scale: 20 },
         correctLevel: 'M',
-        type : 'round',
-        size: 70,
-        opacity: 80,
-        posType: 'roundRect',
+        type : 'rect',
+        size: 68,
+        opacity: 100,
+        posType: 'customstyle1',
         otherColor: '#21448B',
         posColor: '#21448B',
     };
